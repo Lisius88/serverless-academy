@@ -1,0 +1,25 @@
+{
+  "name": "03_cli_telegram_console_sender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "commander": "^10.0.0",
+    "node-telegram-bot-api": "^0.61.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./03_cli_telegram_console_sender/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lisius88/serverless-academy.git"
+  },
+  "keywords": [],
+  "author": "Lis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lisius88/serverless-academy/issues"
+  },
+  "homepage": "https://github.com/Lisius88/serverless-academy#readme"
+}

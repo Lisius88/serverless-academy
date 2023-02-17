@@ -1,0 +1,21 @@
+{
+  "name": "01_cli_interactive_sort",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./01_cli_interactive_sort/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lisius88/serverless-academy.git"
+  },
+  "keywords": [],
+  "author": "Lis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lisius88/serverless-academy/issues"
+  },
+  "homepage": "https://github.com/Lisius88/serverless-academy#readme"
+}
