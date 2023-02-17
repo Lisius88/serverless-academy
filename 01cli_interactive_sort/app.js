@@ -69,6 +69,10 @@ const game = () => {
         console.log("Enter more than one value")
         return game()
       }
+      if (newArr.length > 10) {
+        console.log("10 values is the maximum")
+        return game()
+      }
       console.log(`If your values are digits you can use methods: "ascending" and "descending".
 If your values are words you can use methods: "by alphabet", "by number of letters", "show only unique words".
 If your values are words and digits you can use a method: "show only unique values".`)

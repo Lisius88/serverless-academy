@@ -21,8 +21,6 @@ const sendMessage = async ({ message }) => {
             exit()
     }
     })
-        
-    
     if (message) {
     let userId = await fs.readFile(filePath)
         await bot.sendMessage(userId, message)

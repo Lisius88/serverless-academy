@@ -4,6 +4,7 @@ import path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 import NodeCache from "node-cache";
+import { opts } from "./options/options.js";
 
 const myCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 const date = new Date();
@@ -14,9 +15,6 @@ const TOKEN = fs.readFileSync(filePath)
 const bot = new TelegramBot(JSON.parse(TOKEN), { polling: true });
 
 const APIKEY = '907514a8881bedca6af2ff52f1e71558'
-
-axios.defaults.baseURL = `https://api.openweathermap.org/data/2.5/weather?lat=41.390205&lon=2.154007&units=metric&appid=${APIKEY}`;
-
 
 const forecastWithInterval = async (id) => {
     try {
@@ -139,14 +137,14 @@ Humidity: ${newData[6].main.humidity}%
 const forecast = async (id) => {
     try {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=41.390205&lon=2.154007&units=metric&appid=${APIKEY}`)  
-    const data = response.data;
+    const data = response.data.list[0];
     await bot.sendMessage(id, `Today in Barcelona:
-Now: ${data.list[0].weather[0].main} ${Math.round(data.list[0].main.temp)}℃
-Feels like: ${Math.round(data.list[0].main.feels_like)}℃
-Min: ${Math.round(data.list[0].main.temp_min)}℃
-Max: ${Math.round(data.list[0].main.temp_max)}℃
-Pressure: ${data.list[0].main.pressure}
-Humidity: ${data.list[0].main.humidity}%
+Now: ${data.weather[0].main} ${Math.round(data.main.temp)}℃
+Feels like: ${Math.round(data.main.feels_like)}℃
+Min: ${Math.round(data.main.temp_min)}℃
+Max: ${Math.round(data.main.temp_max)}℃
+Pressure: ${data.main.pressure}
+Humidity: ${data.main.humidity}%
             `);    
     } catch (error) {
     console.log(error)
@@ -258,38 +256,9 @@ Purchase: EUR = ${eurBuyFromCache}UAH
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
   if (msg.text === '/start') {
-  bot.sendMessage(chatId, "Hi! What do you want to see?", {
-"reply_markup": {
-          "keyboard": [["/Weather"],
-          ["/Eschange rates"]]
-    }
-})
+  bot.sendMessage(chatId, "Hi! What do you want to see?", opts[2])
   }
 });
-
-const opts = {
-"reply_markup": {
-            "keyboard":
-        [["USD", "EUR"], ["/back"]],  
-                
-    }
-}
-
-const optsSecond = {
-"reply_markup": {
-            "keyboard":
-        [["at intervals of 3 hours", "at intervals of 6 hours"], ["wind"], ["/back"]]   
-                
-    }
-}
-
-const optsThird = {
-"reply_markup": {
-          "keyboard": [["/Weather"],
-          ["/Eschange rates"]]
-    }
-}
-
 
 bot.on('message', (msg) => {
     const chatId = msg.chat.id
@@ -297,11 +266,11 @@ bot.on('message', (msg) => {
     
     switch (text) {
         case "/Eschange rates":
-        bot.sendMessage(chatId, "Choose the currency!", opts)    
+        bot.sendMessage(chatId, "Choose the currency!", opts[0])    
             break;
         case "/Weather":
         forecast(chatId)
-        bot.sendMessage(chatId, "If you want to know the forecast for the day, select the interval you are interested in", optsSecond)   
+        bot.sendMessage(chatId, "If you want to know the forecast for the day, select the interval you are interested in", opts[1])   
             break;
         case "at intervals of 3 hours":
         forecastWithInterval(chatId)    
@@ -319,7 +288,7 @@ bot.on('message', (msg) => {
         dollarRate(chatId)    
             break;
         case "/back":
-        bot.sendMessage(chatId, "What do you want to see?", optsThird)   
+        bot.sendMessage(chatId, "What do you want to see?", opts[2])   
             break;
     }
 });
