@@ -1,12 +1,12 @@
 {
-  "name": "06_instagram_giveaway",
+  "name": "07_grouping_vacations",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .06_instagram_giveaway/app.js"
+    "start": "node .07_grouping_vacations/app.js"
   },
   "keywords": [],
   "author": "Lis",
