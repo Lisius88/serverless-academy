@@ -20,7 +20,8 @@ Feels like:${Math.round(data.main.feels_like)}℃
 Min: ${Math.round(data.main.temp_min)}℃ 
 Max: ${Math.round(data.main.temp_max)}℃
 Pressure: ${data.main.pressure} 
-Humidity: ${data.main.humidity}%`)
+Humidity: ${data.main.humidity}%
+`)
             .join('\n');
         await bot.sendMessage(id, message);    
     } catch (error) {
@@ -38,7 +39,8 @@ Feels like:${Math.round(data.main.feels_like)}℃
 Min: ${Math.round(data.main.temp_min)}℃ 
 Max: ${Math.round(data.main.temp_max)}℃
 Pressure: ${data.main.pressure} 
-Humidity: ${data.main.humidity}%`)
+Humidity: ${data.main.humidity}%
+`)
             .join('\n');
     await bot.sendMessage(id, message);    
     } catch (error) {
