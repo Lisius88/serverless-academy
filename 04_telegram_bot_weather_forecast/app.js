@@ -66,17 +66,13 @@ Humidity: ${data.main.humidity}%
 }
 
 bot.on('message', (msg) => {
-    const chatId = msg.chat.id;
-  if (msg.text === '/start') {
-  bot.sendMessage(chatId, "Hi! Do you want to know the weather in Barcelona?", opts[1])
-  }
-});
-
-bot.on('message', (msg) => {
     const chatId = msg.chat.id
     const text = msg.text
     
     switch (text) {
+        case "/start":
+        bot.sendMessage(chatId, "Hi! Do you want to know the weather in Barcelona?", opts[1]) 
+            break;
         case "Forecast in Barcelona":
         forecast(chatId)
         bot.sendMessage(chatId, "If you want to know the forecast for the day, select the interval you are interested in", opts[0])   
